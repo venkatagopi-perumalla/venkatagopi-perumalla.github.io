@@ -1,1 +1,1 @@
-Open to DevOps, platform and cloud engineering roles. See my [portfolio](https://venkatagopi-perumalla.github.io), connect on [LinkedIn](https://www.linkedin.com/in/venkata-gopi-perumalla/), or download my [CV](https://venkatagopi-perumalla.github.io/Venkata_Gopi_Perumalla_CV.pdf).
+
