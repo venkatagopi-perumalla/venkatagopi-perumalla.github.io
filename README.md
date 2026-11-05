@@ -1,6 +1,6 @@
 # venkatagopi-perumalla.github.io
 
-Source of my personal portfolio: **[venkatagopi-perumalla.github.io](https://venkatagopi-perumalla.github.io)**
+Source of my personal portfolio: **[venkatagopiperumalla.com](https://venkatagopiperumalla.com)**
 
 Built with React, TypeScript, Vite, Tailwind CSS, Framer Motion and Three.js. The 3D character is made from primitives in code, with no model files.
 
