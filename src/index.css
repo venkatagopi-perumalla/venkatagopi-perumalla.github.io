@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* One cinematic dark world: cool ink ground, warm paper type, a copper-amber lead and a tidewater second. */
+:root {
+  --ink: 12 16 20;
+  --panel: 19 25 31;
+  --line: 39 48 57;
+  --paper: 236 230 220;
+  --dim: 148 156 164;
+  --amber: 240 163 94;
+  --tide: 111 195 201;
+  --g-cloud: 240 163 94;
+  --g-k8s: 111 195 201;
+  --g-iac: 167 150 232;
+  --g-cicd: 132 204 140;
+  --g-obs: 234 120 112;
+  --g-code: 226 205 120;
+  color-scheme: dark;
+}
+
+html { background: rgb(var(--ink)); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+body {
+  @apply bg-ink text-paper font-sans antialiased;
+  margin: 0;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+::selection { background: rgb(var(--amber) / .35); color: rgb(var(--paper)); }
+:focus-visible { outline: 2px solid rgb(var(--amber)); outline-offset: 3px; border-radius: 6px; }
+
+.gutter { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.tabular { font-variant-numeric: tabular-nums; }
+.balance { text-wrap: balance; }
+.label { @apply font-mono text-[11px] uppercase text-dim; letter-spacing: .14em; }
+
+/* Film grain + vignette */
+.grain::after {
+  content: ""; position: fixed; inset: -50%; pointer-events: none; z-index: 60; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
+
+.hairline { background: linear-gradient(90deg, transparent, rgb(var(--line)) 15%, rgb(var(--line)) 85%, transparent); height: 1px; }
+@keyframes drip { 0% { transform: translateY(-16px) } 100% { transform: translateY(40px) } }
+
+/* Printing / "Save as PDF": keep the dark design, show every section, no animations. */
+@media print {
+  @page { margin: 12mm; }
+  html, body { background: rgb(var(--ink)) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  [style*="opacity"] { opacity: 1 !important; }
+  [style*="transform"] { transform: none !important; }
+  .grain::after, header, [aria-label="Scroll down"], #top .blur-\[120px\] { display: none !important; }
+  #id-card button { transform: none !important; }
+  #id-card button > div:last-child { display: none !important; }
+  section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  article, li { break-inside: avoid; }
+}
