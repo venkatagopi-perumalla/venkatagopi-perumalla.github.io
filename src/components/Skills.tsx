@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import { skillGroups } from "@/content";
+import { alsoSkills, skillGroups } from "@/content";
 import { Reveal, Section, SectionHead } from "./ui";
 
 type Flat = { n: number; sym: string; name: string; note: string; group: string; label: string; hue: string };
@@ -109,6 +109,15 @@ export function Skills() {
           </aside>
         </Reveal>
       </div>
+
+      {alsoSkills.length > 0 && (
+        <Reveal>
+          <p className="mt-8 max-w-4xl text-[15px] leading-relaxed text-dim">
+            <span className="label mr-2 text-paper/80">Also</span>
+            {alsoSkills.join(" · ")}
+          </p>
+        </Reveal>
+      )}
     </Section>
   );
 }

@@ -5,14 +5,14 @@ export const profile = {
   name: "Venkata Gopi Perumalla",
   short: "Venkata Gopi",
   initials: "VG",
-  title: "DevOps Engineer",
-  focus: "AWS Cloud & Kubernetes",
+  title: "DevOps & Site Reliability Engineer",
+  focus: "AWS & Kubernetes",
   years: "4+",
   location: "Dublin, Ireland",
   workRight: "Stamp 1G — full right to work in Ireland",
   tagline: "I build the road from git push to production — and make it safe to drive fast.",
   summary:
-    "DevOps engineer with 4+ years designing, automating and running cloud infrastructure on AWS. I build and operate Amazon EKS platforms and CI/CD pipelines, provision environments as code with Terraform, and keep production healthy with Prometheus and Grafana.",
+    "DevOps Engineer with 4+ years of experience working with AWS, Kubernetes, Terraform and CI/CD pipelines. Experienced in managing production Amazon EKS environments, automating AWS infrastructure and troubleshooting application deployments. Strong background in production support, monitoring with Prometheus and Grafana, and scripting in Python and Bash. AWS Certified Solutions Architect – Associate, with an MBA in Project Management from Dublin Business School.",
   email: "gopiperumalla14@gmail.com",
   linkedin: "https://www.linkedin.com/in/venkata-gopi-perumalla/",
   github: "https://github.com/venkatagopi-perumalla",
@@ -124,11 +124,13 @@ export const experience = [
     points: [
       "Operated production Amazon EKS clusters, carrying out Kubernetes version upgrades and node patching with minimal disruption to running services.",
       "Secured cluster and cloud access with Kubernetes RBAC, network policies, IAM roles and TLS.",
-      "Packaged applications as Helm charts and managed their releases to EKS, keeping deployments consistent across environments.",
-      "Monitored platform health with Prometheus, Grafana and Amazon CloudWatch, built alerting rules and dashboards, and led troubleshooting and root-cause analysis for production incidents.",
-      "Managed server configuration with Ansible playbooks and scripted repetitive platform tasks in Python.",
+      "Created and updated Helm charts to deploy applications to EKS across different environments.",
+      "Used Prometheus, Grafana and CloudWatch to monitor EKS workloads, investigate alerts and troubleshoot production incidents.",
+      "Led root-cause analysis after production incidents.",
+      "Maintained and updated Terraform code for AWS and EKS infrastructure.",
+      "Used Ansible playbooks for server configuration and Python scripts for routine platform tasks.",
     ],
-    tags: ["EKS", "Helm", "RBAC", "Prometheus", "Ansible"],
+    tags: ["EKS", "Helm", "RBAC", "Prometheus", "Terraform", "Ansible"],
   },
   {
     role: "Senior Software Engineer — DevOps",
@@ -137,11 +139,11 @@ export const experience = [
     when: "Sep 2022 — Jun 2023",
     lead: "Built the pipelines and Terraform that took code to Kubernetes on AWS.",
     points: [
-      "Built Jenkins Pipeline and Multibranch jobs as code in Groovy that compiled with Maven, ran SonarQube quality gates, built Docker images and deployed them to Kubernetes on AWS.",
+      "Built Jenkins Pipeline and Multibranch jobs in Groovy to run Maven builds, SonarQube checks, Docker image builds and Kubernetes deployments on AWS.",
       "Administered Jenkins on Linux, managing plugins, credentials and security for development teams.",
-      "Wrote reusable Terraform modules with remote state for EKS clusters, VPCs, subnets, security groups and Auto Scaling groups, cutting manual effort for environment builds.",
+      "Created reusable Terraform modules to provision EKS clusters, VPCs, subnets, security groups and Auto Scaling groups, using remote state.",
       "Provisioned IAM roles, S3 policies and RDS snapshots with AWS CloudFormation, and integrated S3 and IAM with EKS clusters.",
-      "Agreed Git branching, merging and tagging strategy with development teams and resolved merge conflicts to keep releases moving.",
+      "Set up the Git branching and tagging strategy with developers and resolved merge conflicts before releases.",
     ],
     tags: ["Jenkins", "Terraform", "SonarQube", "CloudFormation"],
   },
@@ -152,11 +154,11 @@ export const experience = [
     when: "Mar 2020 — Sep 2022",
     lead: "Ran releases for enterprise clients and automated the toil away.",
     points: [
-      "Deployed applications to Apache Tomcat and IBM WebSphere through Jenkins, publishing versioned build artefacts to JFrog Artifactory.",
-      "Scaled Jenkins with distributed build agents so multiple development teams could run builds in parallel.",
-      "Automated EC2 start/stop scheduling with AWS Lambda and SNS to cut idle compute, and replaced manual Linux server tasks with Bash scripts.",
-      "Supported production releases, diagnosing failed builds from Jenkins logs and joining major-incident bridge calls to restore service.",
-      "Worked in Agile sprints, tracking deployments and operational tasks in Jira.",
+      "Built and maintained Jenkins CI/CD pipelines for deployments to Apache Tomcat and IBM WebSphere, publishing versioned build artefacts to JFrog Artifactory.",
+      "Configured distributed Jenkins build agents to support parallel builds for multiple development teams.",
+      "Automated EC2 start/stop operations using AWS Lambda and SNS to reduce idle compute usage, and wrote Bash scripts for routine Linux server tasks.",
+      "Supported production releases, investigated failed Jenkins builds and participated in major-incident calls to troubleshoot deployment issues.",
+      "Worked with development teams in Agile sprints, tracking releases and operational tasks in Jira.",
     ],
     tags: ["Jenkins", "Artifactory", "Lambda", "Bash"],
   },
@@ -171,9 +173,9 @@ export const featured = {
   tech: ["AWS EKS", "ECR", "Terraform", "GitHub Actions", "Gitleaks", "Trivy", "Docker", "Helm", "Argo CD", "External Secrets", "Secrets Manager", "Prometheus", "Grafana", "Loki"],
   points: [
     "Built a VPC across two availability zones with private subnets for the nodes, an EKS cluster on Spot nodes and ECR registries, using reusable Terraform modules with S3 remote state.",
-    "Built a GitHub Actions pipeline with unit tests, Gitleaks and Trivy. Trivy blocked a release over 3 HIGH CVEs — fixed by upgrading the dependencies rather than weakening the scan.",
+    "Built a GitHub Actions pipeline with unit tests, Gitleaks and Trivy. Trivy blocked a release over 3 HIGH CVEs, fixed by upgrading the dependencies rather than weakening the scan.",
     "Deployed three microservices with Helm and Argo CD (auto-sync, prune and self-heal), with database secrets pulled from AWS Secrets Manager through External Secrets and EKS Pod Identity.",
-    "Set a 99.5% SLO with a multi-window burn-rate alert. After a deliberate bad config change caused about 25% errors, traced it with Grafana, Loki and Argo CD history, rolled back with git revert in about 2 minutes and wrote the RCA.",
+    "Set a 99.5% SLO with a multi-window burn-rate alert. Introduced a controlled configuration failure causing about 25% errors, traced it with Grafana, Loki and Argo CD, rolled back with Git in about two minutes and wrote the RCA.",
     "Ran the platform under load (6,200+ orders processed), kept the cost to a few dollars with Spot nodes and a single NAT gateway, and tore down all 70 resources with Terraform the same day.",
   ],
   shots: [
@@ -236,4 +238,11 @@ export const education = [
 export const courses: { name: string; provider: string; year?: string; url?: string }[] = [
   { name: "Site Reliability Engineering Essential Training", provider: "LinkedIn Learning", year: "Nov 2026" },
   { name: "Kubernetes Essential Training: Application Development", provider: "LinkedIn Learning", year: "Oct 2026" },
+];
+
+// Other skills from the CV that don't have their own tile in the periodic table.
+export const alsoSkills = [
+  "Amazon ECS", "ECR", "S3", "EBS", "EFS", "RDS", "Elastic Load Balancing", "CloudFront", "CloudTrail",
+  "Secrets Manager", "AWS Direct Connect", "ELK Stack", "Maven", "Nginx", "Apache Tomcat", "IBM WebSphere",
+  "Windows", "Disaster recovery & rollback planning",
 ];
