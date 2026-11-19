@@ -30,13 +30,13 @@ export const greetings = [
 export const focusAreas = [
   {
     k: "Platform",
-    title: "Kubernetes on AWS",
-    body: "Operating Amazon EKS clusters end to end: version upgrades, node patching, Helm releases, RBAC and network policies.",
+    title: "Containers on AWS",
+    body: "Operating Amazon EKS clusters end to end: version upgrades, node patching, Helm releases, RBAC and network policies, and running services on ECS Fargate.",
   },
   {
     k: "Delivery",
     title: "CI/CD & GitOps",
-    body: "Jenkins and GitHub Actions pipelines that test, scan and package — then Argo CD makes the cluster match Git.",
+    body: "Jenkins and GitHub Actions pipelines that test, scan and package — then Argo CD syncs the cluster, or an approval-gated deploy takes it to production.",
   },
   {
     k: "Foundations",
@@ -60,9 +60,14 @@ export const skillGroups: Group[] = [
       { sym: "Ek", name: "Amazon EKS", note: "Ran production EKS clusters at Cognizant; built one on Spot nodes for the GitOps platform." },
       { sym: "Ec", name: "EC2 & Auto Scaling", note: "Terraform modules for Auto Scaling groups; Lambda-driven EC2 start/stop to cut idle compute." },
       { sym: "Ia", name: "IAM", note: "Least-privilege roles and policies for clusters, pipelines and pods (EKS Pod Identity)." },
-      { sym: "Vp", name: "VPC & Networking", note: "Multi-AZ VPCs with private subnets, NAT, security groups, load balancers, Direct Connect." },
+      { sym: "Vp", name: "VPC & Networking", note: "Multi-AZ VPCs with private subnets, NAT or VPC endpoints, security groups, load balancers, Direct Connect." },
       { sym: "La", name: "Lambda & SNS", note: "Event-driven automation, from S3 triggers to scheduled cost-saving jobs." },
-      { sym: "Cw", name: "CloudWatch", note: "Metrics and alarms alongside Prometheus for platform health." },
+      { sym: "Cw", name: "CloudWatch", note: "Alarms emailed through SNS and a service dashboard; used alongside Prometheus." },
+      { sym: "Fg", name: "ECS Fargate", note: "Ran a FastAPI service with autoscaling and a circuit breaker that rolled back a bad release by itself." },
+      { sym: "Rd", name: "RDS PostgreSQL", note: "Encrypted, private database; turned on Multi-AZ to measure a failover under load, plus a point-in-time restore." },
+      { sym: "Wf", name: "AWS WAF", note: "Rate limit that blocked 3,000 of 3,000 requests in a burst." },
+      { sym: "Km", name: "KMS", note: "Customer-managed key with yearly rotation for the database." },
+      { sym: "Ct", name: "CloudTrail & Config", note: "Audit trail of every production change; 5 of 5 Config rules compliant." },
     ],
   },
   {
@@ -86,7 +91,7 @@ export const skillGroups: Group[] = [
     id: "cicd", label: "CI/CD & GitOps", hue: "var(--g-cicd)",
     items: [
       { sym: "Jk", name: "Jenkins", note: "Pipeline and Multibranch jobs in Groovy; scaled with distributed build agents." },
-      { sym: "Ga", name: "GitHub Actions", note: "Test, scan and push pipelines with matrix builds and OIDC-ready auth." },
+      { sym: "Ga", name: "GitHub Actions", note: "Test, scan and push pipelines with matrix builds, and production deploys gated behind a named approver." },
       { sym: "Ar", name: "Argo CD", note: "Auto-sync, prune and self-heal; rollbacks as git revert." },
       { sym: "Sq", name: "SonarQube", note: "Quality gates in Maven pipelines before images are built." },
       { sym: "Jf", name: "JFrog Artifactory", note: "Versioned build artefacts for Tomcat and WebSphere deployments." },
@@ -99,7 +104,7 @@ export const skillGroups: Group[] = [
       { sym: "Pr", name: "Prometheus", note: "Alerting rules and a 99.5% SLO with multi-window burn-rate alerts." },
       { sym: "Gf", name: "Grafana", note: "Dashboards for request rate, error ratio, p95 latency and restarts." },
       { sym: "Lk", name: "Loki", note: "Log queries that traced an incident to a single endpoint." },
-      { sym: "Tv", name: "Trivy", note: "Image scanning that blocked a release over 3 HIGH CVEs." },
+      { sym: "Tv", name: "Trivy", note: "Scans images, dependencies and Terraform; blocked a release over 3 HIGH CVEs and a base image with a HIGH zlib CVE." },
       { sym: "Gl", name: "Gitleaks", note: "Secret scanning on every push." },
     ],
   },
@@ -186,6 +191,25 @@ export const featured = {
   ],
 };
 
+export const payments = {
+  name: "Secure Payments API on AWS",
+  when: "Nov 2026",
+  repo: "https://github.com/venkatagopi-perumalla/secure-payments-platform",
+  controls: "https://github.com/venkatagopi-perumalla/secure-payments-platform/blob/main/docs/controls.md",
+  summary:
+    "A small payments API (FastAPI and PostgreSQL) and the AWS platform around it, built the way a regulated team would run it: private networking with VPC endpoints instead of NAT, encryption with a customer-managed KMS key, scanned and immutable images, deployments that need a named approver, and failure tests I measured myself. I built it in a lab AWS account in eu-north-1. It's a portfolio project, not certified against PCI DSS or any standard.",
+  tech: ["Terraform", "ECS Fargate", "RDS PostgreSQL 16", "ALB", "AWS WAF", "KMS", "Secrets Manager", "ECR", "VPC endpoints", "CloudTrail", "AWS Config", "CloudWatch", "SNS", "GitHub Actions", "Trivy", "FastAPI"],
+  points: [
+    "An approved deployment took 2 minutes 3 seconds, with 0 of 300 health checks failed. A release that crashed on start-up was rolled back automatically by the ECS circuit breaker in about 4 minutes, with 0 user errors.",
+    "I forced a Multi-AZ database failover under load. Payments failed for about 10 seconds (291 of 300 accepted, 8 returned 500, 1 timed out). AWS reported the failover complete in 48 seconds, so I measure from the user's side now.",
+    "I restored the database to a point in time in 14.2 minutes, onto a new encrypted, private instance. A manual rollback took 3 minutes 0 seconds from approval to stable.",
+    "The AWS WAF rate limit blocked 3,000 of 3,000 requests in a burst. A forced alarm emailed me in about a minute, and the recovery email followed automatically.",
+    "Every pull request runs 12 tests against a real PostgreSQL plus Trivy scans. Deploys check that the image was scanned and fail if ECS rolled back. I documented 41 controls with evidence.",
+  ],
+  gaps: "HTTP only for now; HTTPS is next. The lab account blocks IAM OIDC, so CI uses two least-privilege IAM users.",
+  shot: { src: "payments-architecture.webp", w: 1400, h: 860, alt: "Architecture: GitHub pull requests run tests and Trivy scans, images go to ECR with immutable tags, an approved deploy updates ECS Fargate in private app subnets behind AWS WAF and a load balancer, with RDS PostgreSQL encrypted by KMS in private data subnets, VPC endpoints instead of NAT, and CloudTrail, AWS Config and CloudWatch alarms." },
+};
+
 export const moreProjects = [
   {
     name: "learning-tracker",
@@ -220,7 +244,7 @@ export const stats = [
   { value: 2, prefix: "~", suffix: " min", label: "from git revert to recovery", sub: "during a 25%-error incident" },
   { value: 99.5, suffix: "%", decimals: 1, label: "SLO with burn-rate alerting", sub: "multi-window, per the SRE workbook" },
   { value: 3, label: "HIGH CVEs blocked by Trivy", sub: "fixed, not suppressed" },
-  { value: 70, label: "AWS resources torn down", sub: "in one terraform destroy" },
+  { value: 0, suffix: "/300", label: "health checks failed", sub: "during an approved ECS deploy" },
 ];
 
 export const certification = {
@@ -242,7 +266,7 @@ export const courses: { name: string; provider: string; year?: string; url?: str
 
 // Other skills from the CV that don't have their own tile in the periodic table.
 export const alsoSkills = [
-  "Amazon ECS", "ECR", "S3", "EBS", "EFS", "RDS", "Elastic Load Balancing", "CloudFront", "CloudTrail",
+  "ECR", "S3", "EBS", "EFS", "Elastic Load Balancing", "CloudFront",
   "Secrets Manager", "AWS Direct Connect", "ELK Stack", "Maven", "Nginx", "Apache Tomcat", "IBM WebSphere",
   "Windows", "Disaster recovery & rollback planning",
 ];

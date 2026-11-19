@@ -2,12 +2,13 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Plus } from "lucide-react";
 import clsx from "clsx";
-import { featured, moreProjects } from "@/content";
+import { featured, moreProjects, payments } from "@/content";
 import { Reveal, Section, SectionHead, Tag } from "./ui";
 
 export function Work() {
   const [shot, setShot] = useState(0);
   const [more, setMore] = useState(false);
+  const [morePay, setMorePay] = useState(false);
   const s = featured.shots[shot];
 
   return (
@@ -78,6 +79,50 @@ export function Work() {
                 </a>
                 <a href={featured.rca} target="_blank" rel="noreferrer" className="group inline-flex items-center justify-between rounded-xl border border-line px-5 py-3.5 text-paper hover:border-paper/50">
                   Read the incident RCA <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </Reveal>
+
+      <Reveal>
+        <article className="mt-10 overflow-hidden rounded-3xl border border-line bg-panel">
+          <div className="border-b border-line bg-[#0e1317] p-3 sm:p-5">
+            <div className="mb-3 flex items-center gap-1.5 px-1" aria-hidden>
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ea7870]" /><span className="h-2.5 w-2.5 rounded-full bg-[#e2cd78]" /><span className="h-2.5 w-2.5 rounded-full bg-[#84cc8c]" />
+              <span className="ml-3 truncate font-mono text-[11px] text-dim">github.com/venkatagopi-perumalla/secure-payments-platform</span>
+            </div>
+            <div className="overflow-hidden rounded-xl bg-white">
+              <img src={payments.shot.src} width={payments.shot.w} height={payments.shot.h} alt={payments.shot.alt} loading="lazy" className="h-auto w-full" />
+            </div>
+          </div>
+
+          <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_300px]">
+            <div className="min-w-0">
+              <p className="label">{payments.when} · Personal project</p>
+              <h3 className="mt-2 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">{payments.name}</h3>
+              <p className="mt-4 text-[15.5px] leading-relaxed text-paper/85">{payments.summary}</p>
+              <ul className="mt-6 space-y-3">
+                {payments.points.slice(0, morePay ? undefined : 2).map((p) => (
+                  <li key={p} className="flex gap-3 text-[15.5px] leading-relaxed text-paper/85">
+                    <span className="mt-2.5 h-1 w-3 shrink-0 bg-amber/70" />{p}
+                  </li>
+                ))}
+              </ul>
+              <button type="button" onClick={() => setMorePay((m) => !m)} aria-expanded={morePay} className="mt-4 inline-flex items-center gap-2 text-sm text-tide hover:text-paper">
+                <Plus className={clsx("h-4 w-4 transition-transform", morePay && "rotate-45")} /> {morePay ? "Show less" : `Read all ${payments.points.length} results`}
+              </button>
+              <p className="mt-6 border-l-2 border-line pl-4 text-[14px] leading-relaxed text-dim"><span className="text-paper/80">Known gaps:</span> {payments.gaps}</p>
+            </div>
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-2">{payments.tech.map((t) => <Tag key={t}>{t}</Tag>)}</div>
+              <div className="flex flex-col gap-2">
+                <a href={payments.repo} target="_blank" rel="noreferrer" className="group inline-flex items-center justify-between rounded-xl bg-amber px-5 py-3.5 font-semibold text-ink">
+                  View the code <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+                <a href={payments.controls} target="_blank" rel="noreferrer" className="group inline-flex items-center justify-between rounded-xl border border-line px-5 py-3.5 text-paper hover:border-paper/50">
+                  Read the 41 controls <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
             </div>
