@@ -204,7 +204,7 @@ export const payments = {
     "I forced a Multi-AZ database failover under load. Payments failed for about 10 seconds (291 of 300 accepted, 8 returned 500, 1 timed out). AWS reported the failover complete in 48 seconds, so I measure from the user's side now.",
     "I restored the database to a point in time in 14.2 minutes, onto a new encrypted, private instance. A manual rollback took 3 minutes 0 seconds from approval to stable.",
     "The AWS WAF rate limit blocked 3,000 of 3,000 requests in a burst. A forced alarm emailed me in about a minute, and the recovery email followed automatically.",
-    "Every pull request runs 12 tests against a real PostgreSQL plus Trivy scans. Deploys check that the image was scanned and fail if ECS rolled back. I documented 41 controls with evidence.",
+    "Every pull request runs 12 tests against a real PostgreSQL plus Trivy scans. Deploys check that the image was scanned and fail if ECS rolled back. The API runs on HTTPS at my own domain with an ACM certificate (TLS 1.2/1.3 only), and plain HTTP redirects. I documented 42 controls with evidence.",
   ],
     gaps: "TLS ends at the load balancer; traffic inside the VPC to the tasks is plain HTTP. The lab account blocks IAM OIDC, so CI uses two least-privilege IAM users.",
   shot: { src: "payments-architecture.webp", w: 1400, h: 860, alt: "Architecture: GitHub pull requests run tests and Trivy scans, images go to ECR with immutable tags, an approved deploy updates ECS Fargate in private app subnets behind AWS WAF and a load balancer, with RDS PostgreSQL encrypted by KMS in private data subnets, VPC endpoints instead of NAT, and CloudTrail, AWS Config and CloudWatch alarms." },
