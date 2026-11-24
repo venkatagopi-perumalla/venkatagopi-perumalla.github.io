@@ -198,7 +198,7 @@ export const payments = {
   controls: "https://github.com/venkatagopi-perumalla/secure-payments-platform/blob/main/docs/controls.md",
   summary:
     "A small payments API (FastAPI and PostgreSQL) and the AWS platform around it, built the way a regulated team would run it: private networking with VPC endpoints instead of NAT, encryption with a customer-managed KMS key, scanned and immutable images, deployments that need a named approver, and failure tests I measured myself. I built it in a lab AWS account in eu-north-1. It's a portfolio project, not certified against PCI DSS or any standard.",
-  tech: ["Terraform", "ECS Fargate", "RDS PostgreSQL 16", "ALB", "AWS WAF", "KMS", "Secrets Manager", "ECR", "VPC endpoints", "CloudTrail", "AWS Config", "CloudWatch", "SNS", "GitHub Actions", "Trivy", "FastAPI"],
+  tech: ["Terraform", "ECS Fargate", "RDS PostgreSQL 16", "ALB", "AWS WAF", "ACM", "KMS", "Secrets Manager", "ECR", "VPC endpoints", "CloudTrail", "AWS Config", "CloudWatch", "SNS", "GitHub Actions", "Trivy", "FastAPI"],
   points: [
     "An approved deployment took 2 minutes 3 seconds, with 0 of 300 health checks failed. A release that crashed on start-up was rolled back automatically by the ECS circuit breaker in about 4 minutes, with 0 user errors.",
     "I forced a Multi-AZ database failover under load. Payments failed for about 10 seconds (291 of 300 accepted, 8 returned 500, 1 timed out). AWS reported the failover complete in 48 seconds, so I measure from the user's side now.",
@@ -206,7 +206,7 @@ export const payments = {
     "The AWS WAF rate limit blocked 3,000 of 3,000 requests in a burst. A forced alarm emailed me in about a minute, and the recovery email followed automatically.",
     "Every pull request runs 12 tests against a real PostgreSQL plus Trivy scans. Deploys check that the image was scanned and fail if ECS rolled back. I documented 41 controls with evidence.",
   ],
-  gaps: "HTTP only for now; HTTPS is next. The lab account blocks IAM OIDC, so CI uses two least-privilege IAM users.",
+    gaps: "TLS ends at the load balancer; traffic inside the VPC to the tasks is plain HTTP. The lab account blocks IAM OIDC, so CI uses two least-privilege IAM users.",
   shot: { src: "payments-architecture.webp", w: 1400, h: 860, alt: "Architecture: GitHub pull requests run tests and Trivy scans, images go to ECR with immutable tags, an approved deploy updates ECS Fargate in private app subnets behind AWS WAF and a load balancer, with RDS PostgreSQL encrypted by KMS in private data subnets, VPC endpoints instead of NAT, and CloudTrail, AWS Config and CloudWatch alarms." },
 };
 
