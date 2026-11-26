@@ -94,8 +94,13 @@ export function Work() {
               <span className="ml-3 truncate font-mono text-[11px] text-dim">github.com/venkatagopi-perumalla/secure-payments-platform</span>
             </div>
             <div className="overflow-hidden rounded-xl bg-white">
-              <img src={payments.shot.src} width={payments.shot.w} height={payments.shot.h} alt={payments.shot.alt} loading="lazy" className="h-auto w-full" />
+              <a href={payments.shot.src} target="_blank" rel="noreferrer" className="block cursor-zoom-in" aria-label="Open the architecture diagram full size">
+                <img src={payments.shot.src} width={payments.shot.w} height={payments.shot.h} alt={payments.shot.alt} loading="lazy" className="h-auto w-full" />
+              </a>
             </div>
+            <a href={payments.shot.src} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1.5 px-1 font-mono text-[11px] text-dim hover:text-paper">
+              Open diagram full size <ArrowUpRight className="h-3 w-3" />
+            </a>
           </div>
 
           <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_300px]">

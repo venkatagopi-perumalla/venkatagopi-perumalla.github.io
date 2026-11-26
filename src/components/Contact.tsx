@@ -54,7 +54,7 @@ export function Contact() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-dim">
-            I'm based in {profile.location} with full right to work (Stamp 1G), and open to DevOps, platform and cloud engineering roles. The quickest way to reach me is email.
+            I'm based in {profile.location} with full right to work (Stamp 1G), and open to DevOps, Site Reliability, platform and cloud engineering roles. The quickest way to reach me is email.
           </p>
         </Reveal>
         <Reveal delay={0.15}>
