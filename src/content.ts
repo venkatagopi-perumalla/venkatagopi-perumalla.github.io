@@ -139,11 +139,11 @@ export const experience = [
     tags: ["Magento 2", "Incident management", "Root cause analysis", "Release testing"],
   },
   {
-    role: "Senior DevOps Engineer – Site Reliability",
+    role: "Senior DevOps Engineer",
     org: "Cognizant Technology Solutions",
     place: "Hyderabad, India",
     when: "Jun 2023 — Aug 2024",
-    lead: "Kept production Amazon EKS healthy, secure and up to date.",
+    lead: "Kept production Amazon EKS healthy, secure and up to date — day-to-day SRE work: on-call, SLOs and root-cause analysis.",
     points: [
       "Managed production Amazon EKS lifecycle operations, including Kubernetes version upgrades and worker node patching, to minimise disruption to business-critical workloads.",
       "Managed Kubernetes workloads using Deployments, Services, ConfigMaps, Secrets, Ingress, Horizontal Pod Autoscaler (HPA) and liveness and readiness probes, packaged and released through Helm.",
