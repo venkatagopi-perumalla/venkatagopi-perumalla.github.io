@@ -256,7 +256,7 @@ export const moreProjects = [
 
 // Only figures stated in the CV or the project write-up.
 export const stats = [
-  { value: 4, suffix: "+", label: "years in DevOps & cloud", sub: "Capgemini → Sevya IT → Cognizant" },
+  { value: 6, suffix: "+", label: "years of experience", sub: "Capgemini → Sevya IT → Cognizant → Lenehan's" },
   { value: 6200, suffix: "+", label: "orders processed under load", sub: "on the EKS GitOps platform" },
   { value: 2, prefix: "~", suffix: " min", label: "from git revert to recovery", sub: "during a 25%-error incident" },
   { value: 99.5, suffix: "%", decimals: 1, label: "SLO with burn-rate alerting", sub: "multi-window, per the SRE workbook" },
