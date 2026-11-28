@@ -9,7 +9,7 @@ export function Experience() {
   const ref = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(1);
 
   return (
     <Section id="experience">
@@ -17,8 +17,8 @@ export function Experience() {
         id="experience-h"
         index="03"
         kicker="Experience"
-        title={<>Four years on the <em className="text-amber">release path</em>.</>}
-        intro="From deploying to Tomcat with Jenkins, to Terraform-built EKS, to running production clusters for enterprise clients."
+        title={<>Six years on the <em className="text-amber">release path</em>.</>}
+        intro="From deploying to Tomcat with Jenkins, to Terraform-built EKS and production clusters for enterprise clients, to keeping a live e-commerce site healthy in Dublin."
       />
       <ol ref={ref} className="relative ml-2 border-l border-line md:ml-[180px]">
         <motion.span aria-hidden style={{ scaleY: progress }} className="absolute -left-px top-0 h-full w-px origin-top bg-gradient-to-b from-amber via-amber to-tide" />

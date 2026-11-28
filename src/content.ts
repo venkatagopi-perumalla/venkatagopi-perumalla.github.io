@@ -7,12 +7,12 @@ export const profile = {
   initials: "VG",
   title: "DevOps & Site Reliability Engineer",
   focus: "AWS & Kubernetes",
-  years: "4+",
+  years: "6+",
   location: "Dublin, Ireland",
   workRight: "Stamp 1G — full right to work in Ireland",
   tagline: "I build the road from git push to production — and make it safe to drive fast.",
   summary:
-    "DevOps Engineer with 4+ years of experience working with AWS, Kubernetes, Terraform and CI/CD pipelines. Experienced in managing production Amazon EKS environments, automating AWS infrastructure and troubleshooting application deployments. Strong background in production support, monitoring with Prometheus and Grafana, and scripting in Python and Bash. AWS Certified Solutions Architect – Associate, with an MBA in Project Management from Dublin Business School.",
+    "Site Reliability and DevOps Engineer with 6+ years of professional experience across cloud, DevOps, SRE and application support. Specialised in running production Amazon EKS and Kubernetes platforms, Terraform infrastructure as code and CI/CD with Jenkins, GitHub Actions, Docker and Helm, backed by hands-on observability (Datadog, Prometheus, Grafana), on-call incident management and root cause analysis, with automation in Python and Bash. Applies SLI/SLO/SLA-based reliability practices, and recent AWS builds show end-to-end SRE work: GitOps with Argo CD, security-gated pipelines, automated rollback, and tested database failover and restore. AWS Certified Solutions Architect – Associate; MBA in Project Management, Dublin Business School.",
   email: "gopiperumalla14@gmail.com",
   linkedin: "https://www.linkedin.com/in/venkata-gopi-perumalla/",
   github: "https://github.com/venkatagopi-perumalla",
@@ -46,7 +46,7 @@ export const focusAreas = [
   {
     k: "Reliability",
     title: "Observability & Incidents",
-    body: "Prometheus, Grafana, Loki and CloudWatch dashboards, SLO burn-rate alerts, and calm root-cause analysis.",
+    body: "Datadog, Prometheus, Grafana, Loki and CloudWatch, SLO burn-rate alerts, on-call, and calm root-cause analysis.",
   },
 ];
 
@@ -60,7 +60,7 @@ export const skillGroups: Group[] = [
       { sym: "Ek", name: "Amazon EKS", note: "Ran production EKS clusters at Cognizant; built one on Spot nodes for the GitOps platform." },
       { sym: "Ec", name: "EC2 & Auto Scaling", note: "Terraform modules for Auto Scaling groups; Lambda-driven EC2 start/stop to cut idle compute." },
       { sym: "Ia", name: "IAM", note: "Least-privilege roles and policies for clusters, pipelines and pods (EKS Pod Identity)." },
-      { sym: "Vp", name: "VPC & Networking", note: "Multi-AZ VPCs with private subnets, NAT or VPC endpoints, security groups, load balancers, Direct Connect." },
+      { sym: "Vp", name: "VPC & Networking", note: "Multi-AZ VPCs with private subnets, NAT or VPC endpoints, security groups, load balancers, Route 53." },
       { sym: "La", name: "Lambda & SNS", note: "Event-driven automation, from S3 triggers to scheduled cost-saving jobs." },
       { sym: "Cw", name: "CloudWatch", note: "Alarms emailed through SNS and a service dashboard; used alongside Prometheus." },
       { sym: "Fg", name: "ECS Fargate", note: "Ran a FastAPI service with autoscaling and a circuit breaker that rolled back a bad release by itself." },
@@ -74,7 +74,7 @@ export const skillGroups: Group[] = [
     id: "k8s", label: "Containers", hue: "var(--g-k8s)",
     items: [
       { sym: "Dk", name: "Docker", note: "Multi-stage builds, non-root users, read-only filesystems, health checks." },
-      { sym: "K8", name: "Kubernetes", note: "Upgrades, node patching, RBAC, network policies, troubleshooting live workloads." },
+      { sym: "K8", name: "Kubernetes", note: "Upgrades, node patching, HPA, health probes, RBAC and network policies on live workloads." },
       { sym: "Hm", name: "Helm", note: "Packaged applications as Helm charts to keep releases consistent across environments." },
       { sym: "Kc", name: "kubectl & YAML", note: "Day-to-day cluster operations and manifest authoring." },
     ],
@@ -90,7 +90,7 @@ export const skillGroups: Group[] = [
   {
     id: "cicd", label: "CI/CD & GitOps", hue: "var(--g-cicd)",
     items: [
-      { sym: "Jk", name: "Jenkins", note: "Pipeline and Multibranch jobs in Groovy; scaled with distributed build agents." },
+      { sym: "Jk", name: "Jenkins", note: "Declarative and scripted pipelines in Groovy; scaled with distributed build agents." },
       { sym: "Ga", name: "GitHub Actions", note: "Test, scan and push pipelines with matrix builds, and production deploys gated behind a named approver." },
       { sym: "Ar", name: "Argo CD", note: "Auto-sync, prune and self-heal; rollbacks as git revert." },
       { sym: "Sq", name: "SonarQube", note: "Quality gates in Maven pipelines before images are built." },
@@ -106,6 +106,9 @@ export const skillGroups: Group[] = [
       { sym: "Lk", name: "Loki", note: "Log queries that traced an incident to a single endpoint." },
       { sym: "Tv", name: "Trivy", note: "Scans images, dependencies and Terraform; blocked a release over 3 HIGH CVEs and a base image with a HIGH zlib CVE." },
       { sym: "Gl", name: "Gitleaks", note: "Secret scanning on every push." },
+      { sym: "Dd", name: "Datadog", note: "Alerts and investigation of pod failures, node issues and resource use on production EKS." },
+      { sym: "Sp", name: "Splunk", note: "Searched application and infrastructure logs to troubleshoot failed deployments." },
+      { sym: "Wz", name: "Wiz", note: "Found cloud misconfigurations on production AWS." },
     ],
   },
   {
@@ -121,36 +124,51 @@ export const skillGroups: Group[] = [
 
 export const experience = [
   {
-    role: "Senior DevOps Engineer",
+    role: "Application Support Assistant",
+    org: "Lenehan's",
+    place: "Dublin, Ireland",
+    when: "Apr 2025 — Present",
+    lead: "Keep a 16,000-product online shop working, and catch problems before customers do.",
+    points: [
+      "Support the Magento 2 e-commerce website (16,000+ products, next-day nationwide delivery), investigating customer-reported issues with checkout, payments, orders and product availability.",
+      "Diagnose catalogue, pricing and stock-sync issues between the Capel Street shop, the Arklow fulfilment centre and the website, keeping online stock accurate and preventing overselling.",
+      "Track recurring incidents through to resolution and identify root causes, escalating platform faults to the hosting and development provider with clear evidence and steps to reproduce.",
+      "Test the website after updates and configuration changes, checking checkout, search, delivery options and order emails before issues reach customers.",
+      "Keep incident records and troubleshooting notes; provide first-line POS, printer and in-store IT support.",
+    ],
+    tags: ["Magento 2", "Incident management", "Root cause analysis", "Release testing"],
+  },
+  {
+    role: "Senior DevOps Engineer – Site Reliability",
     org: "Cognizant Technology Solutions",
     place: "Hyderabad, India",
     when: "Jun 2023 — Aug 2024",
     lead: "Kept production Amazon EKS healthy, secure and up to date.",
     points: [
-      "Operated production Amazon EKS clusters, carrying out Kubernetes version upgrades and node patching with minimal disruption to running services.",
-      "Secured cluster and cloud access with Kubernetes RBAC, network policies, IAM roles and TLS.",
-      "Created and updated Helm charts to deploy applications to EKS across different environments.",
-      "Used Prometheus, Grafana and CloudWatch to monitor EKS workloads, investigate alerts and troubleshoot production incidents.",
-      "Led root-cause analysis after production incidents.",
-      "Maintained and updated Terraform code for AWS and EKS infrastructure.",
-      "Used Ansible playbooks for server configuration and Python scripts for routine platform tasks.",
+      "Managed production Amazon EKS lifecycle operations, including Kubernetes version upgrades and worker node patching, to minimise disruption to business-critical workloads.",
+      "Managed Kubernetes workloads using Deployments, Services, ConfigMaps, Secrets, Ingress, Horizontal Pod Autoscaler (HPA) and liveness and readiness probes, packaged and released through Helm.",
+      "Configured alerts and investigated pod failures, node issues and resource utilisation using Datadog, Prometheus, Grafana and CloudWatch.",
+      "Participated in on-call support and incident management, performing root cause analysis and supporting corrective actions, and tracked reliability against SLOs, contributing to improved MTTD and MTTR.",
+      "Maintained Terraform-managed AWS and EKS infrastructure, supporting workload scaling and releases.",
+      "Enforced access control and network isolation with Kubernetes RBAC, network policies, IAM roles and TLS, and used Wiz to find cloud misconfigurations.",
+      "Automated server configuration with Ansible and routine platform tasks with Python.",
     ],
-    tags: ["EKS", "Helm", "RBAC", "Prometheus", "Terraform", "Ansible"],
+    tags: ["EKS", "Helm", "Datadog", "Prometheus", "Terraform", "Wiz"],
   },
   {
-    role: "Senior Software Engineer — DevOps",
+    role: "Senior Software Engineer",
     org: "Sevya IT Pvt Ltd",
     place: "Hyderabad, India",
     when: "Sep 2022 — Jun 2023",
     lead: "Built the pipelines and Terraform that took code to Kubernetes on AWS.",
     points: [
-      "Built Jenkins Pipeline and Multibranch jobs in Groovy to run Maven builds, SonarQube checks, Docker image builds and Kubernetes deployments on AWS.",
-      "Administered Jenkins on Linux, managing plugins, credentials and security for development teams.",
-      "Created reusable Terraform modules to provision EKS clusters, VPCs, subnets, security groups and Auto Scaling groups, using remote state.",
-      "Provisioned IAM roles, S3 policies and RDS snapshots with AWS CloudFormation, and integrated S3 and IAM with EKS clusters.",
-      "Set up the Git branching and tagging strategy with developers and resolved merge conflicts before releases.",
+      "Developed Jenkins declarative and scripted pipelines in Groovy integrating Maven, SonarQube, Docker and Kubernetes deployments on AWS; administered Linux build agents, plugins and credentials.",
+      "Created reusable Terraform modules with remote state for EKS, VPCs, public and private subnets, NAT Gateway, Route 53, security groups and Auto Scaling groups.",
+      "Supported Kubernetes application deployments, container troubleshooting, workload health checks and rollback procedures.",
+      "Analysed application and infrastructure logs in Splunk to troubleshoot deployment failures and operational incidents.",
+      "Automated IAM roles, S3 bucket policies and RDS snapshots with CloudFormation, and maintained Git branching and tagging for controlled releases.",
     ],
-    tags: ["Jenkins", "Terraform", "SonarQube", "CloudFormation"],
+    tags: ["Jenkins", "Terraform", "SonarQube", "Splunk", "CloudFormation"],
   },
   {
     role: "Software Engineer",
@@ -159,13 +177,12 @@ export const experience = [
     when: "Mar 2020 — Sep 2022",
     lead: "Ran releases for enterprise clients and automated the toil away.",
     points: [
-      "Built and maintained Jenkins CI/CD pipelines for deployments to Apache Tomcat and IBM WebSphere, publishing versioned build artefacts to JFrog Artifactory.",
-      "Configured distributed Jenkins build agents to support parallel builds for multiple development teams.",
-      "Automated EC2 start/stop operations using AWS Lambda and SNS to reduce idle compute usage, and wrote Bash scripts for routine Linux server tasks.",
-      "Supported production releases, investigated failed Jenkins builds and participated in major-incident calls to troubleshoot deployment issues.",
-      "Worked with development teams in Agile sprints, tracking releases and operational tasks in Jira.",
+      "Built Jenkins CI/CD pipelines integrating Git, Maven and JFrog Artifactory for deployments to Apache Tomcat and IBM WebSphere, and configured distributed Linux build agents for parallel builds.",
+      "Maintained AWS infrastructure using Terraform and Helm, supporting repeatable Kubernetes deployments, infrastructure changes and release troubleshooting.",
+      "Automated EC2 start/stop operations with AWS Lambda and SNS to reduce idle compute, and wrote Bash scripts for Linux administration.",
+      "Supported production releases and major-incident troubleshooting in Agile teams; tracked work in Jira.",
     ],
-    tags: ["Jenkins", "Artifactory", "Lambda", "Bash"],
+    tags: ["Jenkins", "Artifactory", "Terraform", "Lambda", "Bash"],
   },
 ];
 
@@ -254,7 +271,7 @@ export const certification = {
 };
 
 export const education = [
-  { degree: "MBA in Project Management", level: "NFQ Level 9", school: "DBS Business School", place: "Dublin, Ireland", when: "2024 — 2025" },
+  { degree: "MBA in Project Management", level: "NFQ Level 9", school: "Dublin Business School", place: "Dublin, Ireland", when: "2024 — 2025" },
   { degree: "Bachelor of Engineering, Civil Engineering", school: "Jawaharlal Nehru Technological University", place: "Kakinada, India", when: "2020" },
 ];
 
@@ -267,6 +284,6 @@ export const courses: { name: string; provider: string; year?: string; url?: str
 // Other skills from the CV that don't have their own tile in the periodic table.
 export const alsoSkills = [
   "ECR", "S3", "EBS", "EFS", "Elastic Load Balancing", "CloudFront",
-  "Secrets Manager", "AWS Direct Connect", "ELK Stack", "Maven", "Nginx", "Apache Tomcat", "IBM WebSphere",
-  "Windows", "Disaster recovery & rollback planning",
+  "Secrets Manager", "Route 53", "API Gateway", "EventBridge", "ACM", "DataSync", "Storage Gateway", "GitLab", "ELK Stack", "Maven", "Nginx", "Apache Tomcat", "IBM WebSphere",
+  "Windows", "Confluence", "Scrum", "ITSM", "SBOM", "Disaster recovery & rollback planning",
 ];
