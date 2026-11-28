@@ -46,7 +46,7 @@ export const focusAreas = [
   {
     k: "Reliability",
     title: "Observability & Incidents",
-    body: "Datadog, Prometheus, Grafana, Loki and CloudWatch, SLO burn-rate alerts, on-call, and calm root-cause analysis.",
+    body: "Datadog, Prometheus, Grafana, Loki and CloudWatch, SLOs, error budgets and burn-rate alerts, on-call, and calm root-cause analysis.",
   },
 ];
 

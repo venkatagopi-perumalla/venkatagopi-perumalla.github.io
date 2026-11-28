@@ -58,7 +58,7 @@ export function Work() {
 
           <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_300px]">
             <div className="min-w-0">
-              <p className="label">{featured.when} · Personal project</p>
+              <p className="label">{featured.when} · Independent project</p>
               <h3 className="mt-2 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">{featured.name}</h3>
               <ul className="mt-6 space-y-3">
                 {featured.points.slice(0, more ? undefined : 2).map((p) => (
@@ -105,7 +105,7 @@ export function Work() {
 
           <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_300px]">
             <div className="min-w-0">
-              <p className="label">{payments.when} · Personal project</p>
+              <p className="label">{payments.when} · Independent project</p>
               <h3 className="mt-2 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-tight tracking-tight">{payments.name}</h3>
               <p className="mt-4 text-[15.5px] leading-relaxed text-paper/85">{payments.summary}</p>
               <ul className="mt-6 space-y-3">
