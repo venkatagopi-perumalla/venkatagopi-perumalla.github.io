@@ -139,7 +139,7 @@ export const experience = [
     tags: ["Magento 2", "Incident management", "Root cause analysis", "Release testing"],
   },
   {
-    role: "Senior DevOps Engineer",
+    role: "Senior DevOps Engineer – Site Reliability",
     org: "Cognizant Technology Solutions",
     place: "Hyderabad, India",
     when: "Jun 2023 — Aug 2024",
